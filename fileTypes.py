@@ -4,22 +4,36 @@ import os
 import winreg
 
 def getTypes():
+	texteditor = r"C:\Program Files\Microsoft VS Code\Code.exe"
+	texticon = r"C:\Program Files\Microsoft VS Code\resources\app\resources\win32\default.ico"
 	return [
-		{'type':'Package.Doom','name':'Id Software Game Package','image':None,'command':r'"E:\Games\Doom\Zandronum\zandronum.exe" "%1"'},
-		{'type':'Document.Todo','name':'Todo list','image':r'"C:\Program Files\Microsoft VS Code\resources\app\resources\win32\default.ico"','command':r'"C:\Program Files\Microsoft VS Code\Code.exe" "%1"'},
-		{'type':'xmlfile','name':'XML File','image':r'"C:\Program Files\Microsoft VS Code\resources\app\resources\win32\xml.ico"','command':r'"C:\Program Files\Microsoft VS Code\Code.exe" "%1"'},
-		{'type':'Document.Markdown','name':'Markdown File','image':r'"C:\Program Files\Microsoft VS Code\resources\app\resources\win32\default.ico"','command':r'"C:\Program Files\Microsoft VS Code\Code.exe" "%1"'},
-		{'type':'inifile','name':'Configuration Settings','image':r'%SystemRoot%\system32\imageres.dll,-69','command':r'"C:\Program Files\Microsoft VS Code\Code.exe" "%1"'},
+		# Manufacturing
+		{'type':'Manufacturing.Control.Numeric','name':'Numerical Control file','image':None,'command':None},
 
-		{'type':'Language.Papyrus.Source','name':'Papyrus Source','image':r'"C:\Program Files\Microsoft VS Code\resources\app\resources\win32\default.ico"','command':r'"C:\Program Files\Microsoft VS Code\Code.exe" "%1"'},
+		# 3D Graphics
+		{'type':'Manufacturing.GCode','name':'Numerical Control file','image':None,'command':None},
+
+		# Text documents
+		{'type':'Document.Markdown','name':'Markdown File','image':f'{texticon}','command':f'{texteditor} "%*"'},
+		{'type':'Document.Todo','name':'Todo list','image':f'{texticon}','command':f'{texteditor} "%*"'},
+		{'type':'inifile','name':'Configuration Settings','image':r'%SystemRoot%\system32\imageres.dll,-69','command':f'{texteditor} "%*"'},
+		{'type':'xmlfile','name':'XML File','image':r'"C:\Program Files\Microsoft VS Code\resources\app\resources\win32\xml.ico"','command':f'{texteditor} "%*"'},
+
+		# Doom Engine
+		{'type':'Package.Doom','name':'Id Software Game Package','image':None,'command':r'"E:\Games\Doom\Zandronum\zandronum.exe" "%*"'},
+
+		# Creation Kit Engine
 		{'type':'Language.Papyrus.Compiled','name':'Compiled Papyrus','image':None,'command':None},
+		{'type':'Language.Papyrus.Source','name':'Papyrus Source','image':f'{texticon}','command':f'{texteditor} "%*"'},
+		{'type':'Model.NetImmerse','name':'NetImmerse Model','image':None,'command':None},
+		{'type':'Package.Bethesda.Archive','name':'Bethesda Archive','image':None,'command':None},
 		{'type':'Package.Bethesda.Plugin','name':'Bethesda Plugin','image':None,'command':None},
 		{'type':'Package.Bethesda.Sequence','name':'Bethesda Sequence','image':None,'command':None},
-		{'type':'Package.Bethesda.Archive','name':'Bethesda Archive','image':None,'command':None},
-		{'type':'Model.NetImmerse','name':'NetImmerse Model','image':None,'command':None},
 
-		{'type':'Language.PHP7','name':'PHP 7 File','image':r'"C:\Program Files\Microsoft VS Code\resources\app\resources\win32\default.ico"','command':r'"C:\Program Files\Microsoft VS Code\Code.exe" "%1"'},
+		# Programming Languages
+		{'type':'Language.PHP7','name':'PHP 7 File','image':f'{texticon}','command':f'{texteditor} "%*"'},
 
+		# Valve
 		{'type':'AI.Valve.SourceEngine.NavMesh','name':'Valve AI NavMesh','image':None,'command':None},
 		{'type':'AI.Valve.SourceEngine.NodeGraph','name':'Valve AI Nodegraph','image':None,'command':None},
 		{'type':'Animation.Valve.SourceEngine.Face','name':'Valve Face Expression','image':None,'command':None},
@@ -42,9 +56,9 @@ def getTypes():
 		{'type':'Model.Valve.SourceEngine.Stripped','name':'Valve Stripping Information','image':None,'command':None},
 		{'type':'Model.Valve.SourceEngine.Vertex','name':'Valve Model Vertex','image':None,'command':None},
 		{'type':'Model.Valve.SourceEngine','name':'Valve Model','image':None,'command':None},
-		{'type':'Package.Valve.SourceEngine.GridCache','name':'Valve Grid Cache Archive','image':None,'command':r'"E:\Software\x64\GCFScrape\GCFScape.exe" "%1"'},
-		{'type':'Package.Valve.SourceEngine.NoCache','name':'Valve No Cache Archive','image':None,'command':r'"E:\Software\x64\GCFScrape\GCFScape.exe" "%1"'},
-		{'type':'Package.Valve.SourceEngine','name':'Valve Pak Archive','image':None,'command':r'"E:\Software\x64\GCFScrape\GCFScape.exe" "%1"'},
+		{'type':'Package.Valve.SourceEngine.GridCache','name':'Valve Grid Cache Archive','image':None,'command':r'"E:\Software\x64\GCFScrape\GCFScape.exe" "%*"'},
+		{'type':'Package.Valve.SourceEngine.NoCache','name':'Valve No Cache Archive','image':None,'command':r'"E:\Software\x64\GCFScrape\GCFScape.exe" "%*"'},
+		{'type':'Package.Valve.SourceEngine','name':'Valve Pak Archive','image':None,'command':r'"E:\Software\x64\GCFScrape\GCFScape.exe" "%*"'},
 		{'type':'Particle.DataModelExchange','name':'DMX Particle','image':None,'command':None},
 		{'type':'ResourceList.Valve.SourceEngine','name':'Valve Resource List','image':None,'command':None},
 		{'type':'Script.Valve.SourceEngine.Encrypted','name':'Valve Encrypted Script','image':None,'command':None},
@@ -54,6 +68,13 @@ def getTypes():
 
 def getExtensions():
 	return [
+		# Manufacturing
+		{'ext':'.gcode','type':'Manufacturing.Control.Numeric'},
+		{'ext':'.mpt','type':'Manufacturing.Control.Numeric'},
+		{'ext':'.mpf','type':'Manufacturing.Control.Numeric'},
+		{'ext':'.nc','type':'Manufacturing.Control.Numeric'},
+
+		# Valve / Source engine
 		{'ext':'.ain','type':'AI.Valve.SourceEngine.NodeGraph'},
 		{'ext':'.ani','type':'Animation.Valve.SourceEngine'},
 		{'ext':'.bsp','type':'Map.Valve.SourceEngine.Compiled'},
@@ -84,25 +105,33 @@ def getExtensions():
 		{'ext':'.vvd','type':'Model.Valve.SourceEngine.Vertex'},
 		{'ext':'.xwv','type':'Audio.Valve.SourceEngine.Xbox360'},
 
+		# Doom Engine
 		{'ext':'.pk3','type':'Package.Doom'},
 		{'ext':'.wad','type':'Package.Doom'},
-		{'ext':'.esp','type':'Package.Bethesda.Plugin'},
-		{'ext':'.seq','type':'Package.Bethesda.Sequence'},
+
+		# Creation Kit Engine
 		{'ext':'.bsa','type':'Package.Bethesda.Archive'},
+		{'ext':'.esp','type':'Package.Bethesda.Plugin'},
 		{'ext':'.nif','type':'Model.NetImmerse'},
-		{'ext':'.todo','type':'Document.Todo'},
-		{'ext':'.xml','type':'xmlfile'},
-		{'ext':'.classpath','type':'xmlfile'},
-		{'ext':'.md','type':'Document.Markdown'},
+		{'ext':'.seq','type':'Package.Bethesda.Sequence'},
+
+		# Programming Languages
+		{'ext':'.pex','type':'Language.Papyrus.Compiled'},
 		{'ext':'.ph7','type':'Language.PHP7'},
 		{'ext':'.psc','type':'Language.Papyrus.Source'},
-		{'ext':'.pex','type':'Language.Papyrus.Compiled'},
 
+		# Configuration Files
 		{'ext':'.cfg','type':'inifile'},
+		{'ext':'.conf','type':'inifile'},
+		{'ext':'.config','type':'inifile'},
 		{'ext':'.ini','type':'inifile'},
 		{'ext':'.properties','type':'inifile'},
-		{'ext':'.conf','type':'inifile'},
-		{'ext':'.config','type':'inifile'}
+
+		# Text Documents
+		{'ext':'.classpath','type':'xmlfile'},
+		{'ext':'.md','type':'Document.Markdown'},
+		{'ext':'.todo','type':'Document.Todo'},
+		{'ext':'.xml','type':'xmlfile'}
 	]
 
 def registerExtensions(extensions):
