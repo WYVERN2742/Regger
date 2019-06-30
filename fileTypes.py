@@ -19,7 +19,7 @@ def getTypes():
 
 		# Creation Kit Engine
 		{'type':'Language.Papyrus.Compiled','name':'Compiled Papyrus','image':None,'command':None},
-		{'type':'Language.Papyrus.Source','name':'Papyrus Source','image':f'{texticon}','command':f'{texteditor} "%1" "%*"'},
+		{'type':'Language.Papyrus.Source','name':'Papyrus Source','image':texticon,'command':f'{texteditor} "%1" "%*"'},
 		{'type':'Model.NetImmerse','name':'NetImmerse Model','image':None,'command':None},
 		{'type':'Package.Bethesda.Archive','name':'Bethesda Archive','image':None,'command':None},
 		{'type':'Package.Bethesda.Plugin','name':'Bethesda Plugin','image':None,'command':None},
@@ -41,18 +41,18 @@ def getTypes():
 		{'type':'dat','name':'Data File','image':None,'command':None},
 
 		# Programming Languages
-		{'type':'Language.Javascript.Node.ESModule','name':'Node.js ES Module','image':f'{texticon}','command':f'{texteditor} "%1" "%*"'},
-		{'type':'Language.Javascript.Object','name':'Javascript Object','image':f'{texticon}','command':f'{texteditor} "%1" "%*"'},
-		{'type':'Language.Javascript','name':'Javascript File','image':f'{texticon}','command':f'{texteditor} "%1" "%*"'},
-		{'type':'Language.PHP7','name':'PHP7 File','image':f'{texticon}','command':f'{texteditor} "%1" "%*"'},
-		{'type':'Language.Skrypt','name':'Skrypt File','image':f'{texticon}','command':f'{texteditor} "%1" "%*"'},
-		{'type':'Language.Web.Style','name':'Cascading Style Sheet','image':f'{texticon}','command':f'{texteditor} "%1" "%*"'},
+		{'type':'Language.Javascript.Node.ESModule','name':'Node.js ES Module','image':texticon,'command':f'{texteditor} "%1" "%*"'},
+		{'type':'Language.Javascript.Object','name':'Javascript Object','image':texticon,'command':f'{texteditor} "%1" "%*"'},
+		{'type':'Language.Javascript','name':'Javascript File','image':texticon,'command':f'{texteditor} "%1" "%*"'},
+		{'type':'Language.PHP7','name':'PHP7 File','image':texticon,'command':f'{texteditor} "%1" "%*"'},
+		{'type':'Language.Skrypt','name':'Skrypt File','image':texticon,'command':f'{texteditor} "%1" "%*"'},
+		{'type':'Language.Web.Style','name':'Cascading Style Sheet','image':texticon,'command':f'{texteditor} "%1" "%*"'},
 
 		# Text documents
-		{'type':'Document.CodeSnippets','name':'Code Snippets','image':f'{texticon}','command':f'{texteditor} "%1" "%*"'},
-		{'type':'Document.Configuration.Markup','name':'Yet Another Markup File','image':f'{texticon}','command':f'{texteditor} "%1" "%*"'},
-		{'type':'Document.Markdown','name':'Markdown File','image':f'{texticon}','command':f'{texteditor} "%1" "%*"'},
-		{'type':'Document.Todo','name':'Todo list','image':f'{texticon}','command':f'{texteditor} "%1" "%*"'},
+		{'type':'Document.CodeSnippets','name':'Code Snippets','image':texticon,'command':f'{texteditor} "%1" "%*"'},
+		{'type':'Document.Configuration.Markup','name':'Yet Another Markup File','image':texticon,'command':f'{texteditor} "%1" "%*"'},
+		{'type':'Document.Markdown','name':'Markdown File','image':texticon,'command':f'{texteditor} "%1" "%*"'},
+		{'type':'Document.Todo','name':'Todo list','image':texticon,'command':f'{texteditor} "%1" "%*"'},
 		{'type':'inifile','name':'Configuration Settings','image':r'%SystemRoot%\system32\imageres.dll,-69','command':f'{texteditor} "%1" "%*"'},
 		{'type':'xmlfile','name':'XML File','image':r'"C:\Program Files\Microsoft VS Code\resources\app\resources\win32\xml.ico"','command':f'{texteditor} "%1" "%*"'},
 
