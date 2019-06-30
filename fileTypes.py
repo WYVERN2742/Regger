@@ -31,7 +31,7 @@ def getTypes():
 		# Fonts
 		{'type':'Font.OpenType.Embedded','name':'Embedded OpenType Font','image':None,'command':None},
 		{'type':'Font.OpenType','name':'OpenType Font','image':None,'command':None},
-		{'type':'Font.Web.OpenFontFormat.Version 2','name':'Web Open Font Format v2','image':None,'command':None},
+		{'type':'Font.Web.OpenFontFormat.Version2','name':'Web Open Font Format v2','image':None,'command':None},
 		{'type':'Font.Web.OpenFontFormat','name':'Web Open Font Format','image':None,'command':None},
 
 		# Manufacturing
@@ -44,8 +44,8 @@ def getTypes():
 		{'type':'Language.Javascript.Node.ESModule','name':'Node.js ES Module','image':f'{texticon}','command':f'{texteditor} "%1" "%*"'},
 		{'type':'Language.Javascript.Object','name':'Javascript Object','image':f'{texticon}','command':f'{texteditor} "%1" "%*"'},
 		{'type':'Language.Javascript','name':'Javascript File','image':f'{texticon}','command':f'{texteditor} "%1" "%*"'},
-		{'type':'Language.PHP7','name':'PHP 7 File','image':f'{texticon}','command':f'{texteditor} "%1" "%*"'},
-		{'type':'Language.Skrypt','name':'Minecraft Skrypt File','image':f'{texticon}','command':f'{texteditor} "%1" "%*"'},
+		{'type':'Language.PHP7','name':'PHP7 File','image':f'{texticon}','command':f'{texteditor} "%1" "%*"'},
+		{'type':'Language.Skrypt','name':'Skrypt File','image':f'{texticon}','command':f'{texteditor} "%1" "%*"'},
 		{'type':'Language.Web.Style','name':'Cascading Style Sheet','image':f'{texticon}','command':f'{texteditor} "%1" "%*"'},
 
 		# Text documents
@@ -112,6 +112,8 @@ def getExtensions():
 		{'ext':'.bsa','type':'Package.Bethesda.Archive'},
 		{'ext':'.esp','type':'Package.Bethesda.Plugin'},
 		{'ext':'.nif','type':'Model.NetImmerse'},
+		{'ext':'.pex','type':'Language.Papyrus.Compiled'},
+		{'ext':'.psc','type':'Language.Papyrus.Source'},
 		{'ext':'.seq','type':'Package.Bethesda.Sequence'},
 
 		# Doom Engine
@@ -139,15 +141,13 @@ def getExtensions():
 		{'ext':'.json','type':'Language.Javascript.Object'},
 		{'ext':'.jsonc','type':'Language.Javascript.Object'},
 		{'ext':'.mjs','type':'Language.Javascript.Node.ESModule'},
-		{'ext':'.pex','type':'Language.Papyrus.Compiled'},
 		{'ext':'.ph7','type':'Language.PHP7'},
 		{'ext':'.php','type':'Language.PHP7'},
-		{'ext':'.psc','type':'Language.Papyrus.Source'},
 		{'ext':'.sk','type':'Language.Skrypt'},
 
 		# Text Documents
 		{'ext':'.classpath','type':'xmlfile'},
-		{'ext':'.code-snippets','type':'xmlfile'},
+		{'ext':'.code-snippets','type':'Document.CodeSnippets'},
 		{'ext':'.md','type':'Document.Markdown'},
 		{'ext':'.todo','type':'Document.Todo'},
 		{'ext':'.xml','type':'xmlfile'},
@@ -233,12 +233,13 @@ def main():
 	types = getTypes()
 	extensions = getExtensions()
 
+	central.uux.show_section()
 	central.uux.show_info(f"Associating {len(extensions)} file types...")
-	central.uux.show_debug("","")
+	central.uux.show_debug("")
 
 	if not registerExtensions(extensions):
 		central.uux.show_error("Access, denied. Are you admin?")
-		exit(-1)
+		return
 
 	central.uux.show_section()
 	central.uux.show_info("Linking Types...")
@@ -246,8 +247,10 @@ def main():
 
 	registerTypes(types)
 
+	central.uux.show_section()
 	central.uux.show_info("Refreshing icon cache...")
 	refreshIcons()
+	central.uux.show_section()
 	central.uux.show_success(f"Defined {len(types)} File Types with {len(extensions)} extensions.")
 
 
