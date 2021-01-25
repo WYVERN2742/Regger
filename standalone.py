@@ -5,7 +5,7 @@ This is the standalone version, it is recommended to install
 formatting support."""
 import os
 import winreg
-from . import fileTypes
+import fileTypes
 
 def registerExtensions(extensions):
 	for extension in extensions:

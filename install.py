@@ -2,7 +2,8 @@
 import central.uux
 import os
 import winreg
-from . import fileTypes
+import fileTypes
+
 def registerExtensions(extensions):
 	for extension in extensions:
 		result = os.system(f"ASSOC {extension.get('ext')}={extension.get('type')}")
